@@ -98,7 +98,7 @@ const createTallyStateMachine = () => {
 	};
 
 	/**
-	 * Decrements the counter by `1` and updates the state based on `MIN_COUNT`.
+	 * Decrements the tally count by `1` and updates the state based on `MIN_COUNT`.
 	 * @returns {void}
 	 */
 	const decrement = () => {
@@ -111,16 +111,20 @@ const createTallyStateMachine = () => {
 	};
 
 	/**
-	 * Resets counter to `0` and triggers the toast alert for count reset.
+	 * Resets the tally count to `0` ({@link DEFAULT_COUNT}) and triggers a
+	 * toast alert to inform the user of the successful reset, provided the
+	 * count is not already at `0`.
 	 * @returns {void}
 	 */
 	const resetCounter = () => {
-		count = DEFAULT_COUNT;
-		state = "normal";
+		if (count !== DEFAULT_COUNT) {
+			count = DEFAULT_COUNT;
+			state = "normal";
 
-		// As the 'resetCounter' action is applicable in all transitions,
-		// the toast alert for the successful count reset is triggered here.
-		toastAlert(state, "resetCounter");
+			// As the 'resetCounter' action is applicable in all transitions,
+			// the toast alert for the successful count reset is triggered here.
+			toastAlert(state, "resetCounter");
+		}
 	};
 
 	/**
