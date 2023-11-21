@@ -49,8 +49,7 @@ class TallyAlert extends LitElement {
 				closable
 			>
 				<sl-icon slot="icon" name=${ALERT_TYPE_MAP[this.type].icon}></sl-icon>
-				<strong>TallyCount status:</strong><br />
-				${escapeHTML(this.message)}
+				<strong>${escapeHTML(this.message)}:</strong><br />
 			</sl-alert>
 		`;
 	}
