@@ -45,7 +45,7 @@ class TallyAlert extends LitElement {
 			<sl-alert
 				data-alert
 				variant=${ALERT_TYPE_MAP[this.type].variant}
-				duration="3000"
+				duration="4000"
 				closable
 			>
 				<sl-icon slot="icon" name=${ALERT_TYPE_MAP[this.type].icon}></sl-icon>
@@ -102,4 +102,3 @@ class TallyAlert extends LitElement {
 }
 
 customElements.define("tally-alert", TallyAlert);
-// <div data-container>${this.showToast ? this.#slAlertTemplate() : ""}</div>
