@@ -17,12 +17,14 @@ const ALERT_TYPE_MAP = {
  * The toast alert can be triggered implicitly or declaratively by means of using the `toast()
  *
  * @element tally-alert
+ * @attr {string} title - The toast alert title to display.
  * @attr {string} message - The toast alert message to display.
  * @attr {"primary" | "success" | "neutral" | "warning" | "danger"} type - The alert type which determines the theme and icon used for the toast alert.
  * @attr {boolean} showToast - Controls the display of the toast alert. When set to true, shows the toast alert. Default is false.
  */
 class TallyAlert extends LitElement {
 	static properties = {
+		title: { type: String },
 		message: { type: String },
 		type: { type: String, reflect: true },
 		showToast: { type: Boolean, reflect: true },
@@ -32,6 +34,7 @@ class TallyAlert extends LitElement {
 		super();
 		this.showToast = false;
 		this.type = "primary";
+		this.title = "";
 		this.message = "";
 		this.renderRoot = undefined;
 	}
@@ -49,7 +52,8 @@ class TallyAlert extends LitElement {
 				closable
 			>
 				<sl-icon slot="icon" name=${ALERT_TYPE_MAP[this.type].icon}></sl-icon>
-				<strong>${escapeHTML(this.message)}:</strong><br />
+				<strong>${this.title}</strong><br />
+				${escapeHTML(this.message)}
 			</sl-alert>
 		`;
 	}

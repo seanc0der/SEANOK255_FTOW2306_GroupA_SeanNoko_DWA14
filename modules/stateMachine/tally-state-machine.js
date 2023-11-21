@@ -43,17 +43,22 @@ const createTallyStateMachine = () => {
 	 * @throws Throws an error if the 'tally-alert' component is not found in the DOM.
 	 */
 	const toastAlert = (currentState, action) => {
+		let alertTitle;
 		let alertMessage;
 		let alertType;
 
-		const minOrMax = currentState.includes("min") ? "Min" : "Max";
-
 		if (currentState === "max-reached" || currentState === "min-reached") {
-			alertMessage = `${minOrMax}-Count reached; unable to ${action} tally.`;
+			const minOrMax = currentState.includes("min")
+				? "Min-Count reached:"
+				: "Max-Count reached:";
+
+			alertTitle = minOrMax;
+			alertMessage = `Unable to ${action} tally`;
 			alertType = "danger";
 		}
 
 		if (action === "resetCounter") {
+			alertTitle = "Success";
 			alertMessage = "Tally Count successfully reset to 0.";
 			alertType = "success";
 		}
@@ -65,6 +70,9 @@ const createTallyStateMachine = () => {
 				"Could not find the 'tally-alert' custom component in the DOM"
 			);
 		}
+
+		// @ts-ignore method exists for the <tally-alert> custom component
+		tallyAlert.title = alertTitle;
 
 		// @ts-ignore method exists for the <tally-alert> custom component
 		tallyAlert.message = alertMessage;
