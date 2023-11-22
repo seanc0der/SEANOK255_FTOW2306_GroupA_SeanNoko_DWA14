@@ -39,15 +39,37 @@ class TallyFooter extends LitElement {
 	render() {
 		return html`
 			<div class="buttons-wrapper" slot="footer">
-				<sl-button class="buttons" data-minus-button>
+				<sl-button
+					class="buttons"
+					data-tally-action="decrement"
+					@click=${this.clickHandler}
+				>
 					<sl-icon class="button-icons" name="dash-lg"></sl-icon>
 				</sl-button>
 
-				<sl-button class="buttons" data-plus-button>
+				<sl-button
+					class="buttons"
+					data-tally-action="increment"
+					@click=${this.clickHandler}
+				>
 					<sl-icon class="button-icons" name="plus-lg"></sl-icon>
 				</sl-button>
 			</div>
 		`;
+	}
+
+	clickHandler(event) {
+		const button = event.currentTarget;
+		const detail = { action: button.dataset.tallyAction };
+
+		this.dispatchEvent(
+			new CustomEvent("tallyButtonAction", {
+				bubbles: true,
+				detail,
+			})
+		);
+
+		button.blur();
 	}
 }
 
