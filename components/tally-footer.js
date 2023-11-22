@@ -13,6 +13,17 @@ class TallyFooter extends LitElement {
 		.buttons::part(base) {
 			height: 10rem;
 			flex-direction: column;
+			background-color: initial;
+		}
+
+		.buttons::part(base):hover {
+			background-color: var(--sl-color-neutral-100);
+			border-color: var(--sl-color-neutral-300);
+		}
+
+		.buttons::part(base):active {
+			background-color: var(--sl-color-neutral-0);
+			border-color: var(--sl-color-neutral-300);
 		}
 
 		.button-icons {
@@ -28,23 +39,11 @@ class TallyFooter extends LitElement {
 	render() {
 		return html`
 			<div class="buttons-wrapper" slot="footer">
-				<sl-button
-					class="buttons"
-					data-minus-button
-					variant="neutral"
-					outline="neutral"
-					size="large"
-				>
+				<sl-button class="buttons" data-minus-button>
 					<sl-icon class="button-icons" name="dash-lg"></sl-icon>
 				</sl-button>
 
-				<sl-button
-					class="buttons"
-					data-plus-button
-					variant="neutral"
-					outline="neutral"
-					size="large"
-				>
+				<sl-button class="buttons" data-plus-button>
 					<sl-icon class="button-icons" name="plus-lg"></sl-icon>
 				</sl-button>
 			</div>
