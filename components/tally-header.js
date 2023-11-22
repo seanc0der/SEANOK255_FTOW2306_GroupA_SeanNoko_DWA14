@@ -12,6 +12,10 @@ class TallyHeader extends LitElement {
 			font-size: 2rem;
 		}
 
+		.menu {
+			padding: 0;
+		}
+
 		.menu-button::part(base) {
 			height: 4rem;
 			width: 5rem;
@@ -25,7 +29,8 @@ class TallyHeader extends LitElement {
 		}
 
 		.menu-items::part(label) {
-			font-size: 1.1rem;
+			padding: 0.8rem;
+			font-size: 1.2rem;
 		}
 
 		.menu-icon {
@@ -48,11 +53,12 @@ class TallyHeader extends LitElement {
 						<sl-icon class="menu-icon" name="three-dots-vertical"></sl-icon>
 					</sl-button>
 
-					<sl-menu>
+					<sl-menu class="menu">
 						<sl-menu-item
 							class="menu-items"
-							data-reset-counter
+							data-tally-action="resetCounter"
 							value="reset-counter"
+							@click=${this.#clickHandler}
 						>
 							Reset Counter
 						</sl-menu-item>
@@ -60,6 +66,18 @@ class TallyHeader extends LitElement {
 				</sl-dropdown>
 			</div>
 		`;
+	}
+
+	#clickHandler(event) {
+		const menuItem = event.currentTarget;
+		const menuItemData = { action: menuItem.dataset.tallyAction };
+
+		this.dispatchEvent(
+			new CustomEvent("tallyResetAction", {
+				bubbles: true,
+				detail: menuItemData,
+			})
+		);
 	}
 }
 
