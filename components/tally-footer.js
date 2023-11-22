@@ -1,5 +1,13 @@
 import { LitElement, html, css } from "../libs/lit-html.js";
 
+/**
+ * `<tally-footer>' is a custom web component representing the footer section with
+ * tally count increment/decrement action buttons.
+ *
+ * @element tally-footer
+ * @fires {CustomEvent} tallyResetAction - Dispatches a custom event when the tally counter is reset <sl-menu-item> is clicked.
+ * @fires {CustomEvent} tallyButtonAction - Dispatches a custom event when the tally counter's increment/decrement buttons are clicked.
+ */
 class TallyFooter extends LitElement {
 	static styles = css`
 		.buttons-wrapper {
@@ -58,6 +66,14 @@ class TallyFooter extends LitElement {
 		`;
 	}
 
+	/**
+	 * Handles the click event on the add/minus buttons to trigger a custom
+	 * event for tally count increment and decrement actions.
+	 *
+	 * @param {Event} event
+	 * @private
+	 * @returns {void}
+	 */
 	#clickHandler(event) {
 		const button = event.currentTarget;
 		const detail = { action: button.dataset.tallyAction };

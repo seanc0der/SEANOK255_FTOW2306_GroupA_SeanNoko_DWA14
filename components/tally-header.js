@@ -1,5 +1,9 @@
 import { LitElement, html, css } from "../libs/lit-html.js";
 
+/**
+ * Custom web component representing the header section of the tally count app.
+ * @element tally-app
+ */
 class TallyHeader extends LitElement {
 	static styles = css`
 		.header-wrapper {
@@ -68,6 +72,14 @@ class TallyHeader extends LitElement {
 		`;
 	}
 
+	/**
+	 * Handles the click event on the menu item to trigger a custom event for
+	 * tally count reset action.
+	 *
+	 * @param {Event} event
+	 * @private
+	 * @returns {void}
+	 */
 	#clickHandler(event) {
 		const menuItem = event.currentTarget;
 		const menuItemData = { action: menuItem.dataset.tallyAction };
