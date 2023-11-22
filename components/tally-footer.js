@@ -42,7 +42,7 @@ class TallyFooter extends LitElement {
 				<sl-button
 					class="buttons"
 					data-tally-action="decrement"
-					@click=${this.clickHandler}
+					@click=${this.#clickHandler}
 				>
 					<sl-icon class="button-icons" name="dash-lg"></sl-icon>
 				</sl-button>
@@ -50,7 +50,7 @@ class TallyFooter extends LitElement {
 				<sl-button
 					class="buttons"
 					data-tally-action="increment"
-					@click=${this.clickHandler}
+					@click=${this.#clickHandler}
 				>
 					<sl-icon class="button-icons" name="plus-lg"></sl-icon>
 				</sl-button>
@@ -58,7 +58,7 @@ class TallyFooter extends LitElement {
 		`;
 	}
 
-	clickHandler(event) {
+	#clickHandler(event) {
 		const button = event.currentTarget;
 		const detail = { action: button.dataset.tallyAction };
 
