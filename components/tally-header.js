@@ -16,6 +16,12 @@ class TallyHeader extends LitElement {
 			height: 4rem;
 			width: 5rem;
 			flex-direction: column;
+			background-color: initial;
+		}
+
+		.menu-button::part(base):hover {
+			background-color: var(--sl-color-neutral-100);
+			border-color: var(--sl-color-neutral-300);
 		}
 
 		.menu-items::part(label) {
@@ -38,13 +44,7 @@ class TallyHeader extends LitElement {
 				<h1>Tally Count</h1>
 
 				<sl-dropdown>
-					<sl-button
-						class="menu-button"
-						variant="neutral"
-						outline="neutral"
-						slot="trigger"
-						size="large"
-					>
+					<sl-button class="menu-button" slot="trigger" size="large">
 						<sl-icon class="menu-icon" name="three-dots-vertical"></sl-icon>
 					</sl-button>
 
