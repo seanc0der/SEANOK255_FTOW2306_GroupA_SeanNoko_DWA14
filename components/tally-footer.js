@@ -69,6 +69,7 @@ class TallyFooter extends LitElement {
 			})
 		);
 
+		// Shoelace <sl-button> method which removes focus from the button.
 		button.blur();
 	}
 }
